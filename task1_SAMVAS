@@ -1,0 +1,87 @@
+void setup()
+{
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  // TRAFFIC FLOW 1 IS OPEN
+  Serial.print("\n TRAFFIC THROUGH 1 IS OPEN");
+  digitalWrite(3, HIGH); //G1 IS ON
+  digitalWrite(4, HIGH); //R2 IS ON
+  digitalWrite(7, HIGH); //R3 IS ON
+  digitalWrite(10, HIGH); //R4 IS ON
+  delay(5000); // G1 ie green light glows for 5s. Traffic is relased form 1
+  // TRANSFERING TRAFFIC FLOW TO 2
+  Serial.print("\n DIRECTING TRAFFIC FROM 1 TO 2");
+  digitalWrite(3, LOW); //G1 IS OFF
+  digitalWrite(5, HIGH);//Y2 IS ON
+  digitalWrite(4, LOW);//R2 IS OFF
+  digitalWrite(2, HIGH);//Y1 IS ON
+
+  delay(3000);
+
+  // TRAFFIC FLOW 2 IS OPEN
+  Serial.print("\n TRAFFIC THROUGH 2 IS OPEN");
+  digitalWrite(13,HIGH); // R1 IS ON
+  digitalWrite(5,LOW); // Y2 IS OFF
+  digitalWrite(2,LOW); // Y1 IS OFF
+  digitalWrite(6,HIGH); // G2 IS ON
+  delay(5000);
+  // TRANSFERING FLOW TO 3
+  Serial.print("\n TRANSFERING TRAFFIC TO 3");
+  digitalWrite(6,LOW); // G2 IS OFF
+  digitalWrite(5,HIGH); // Y2 IS ON
+  digitalWrite(8,HIGH); // Y3 IS ON
+  digitalWrite(7,LOW); // R3 IS OFF
+
+  delay(3000);
+
+  // TRAFFIC FLOW 3 IS OPEN
+  Serial.print("\n TRAFFIC THROUGH 3 IS OPEN");
+  digitalWrite(9,HIGH); // G3 IS ON
+  digitalWrite(8,LOW);  // Y3 IS OFF
+  digitalWrite(5,LOW);  // Y2 IS OFF
+  digitalWrite(4,HIGH); // R2 IS ON
+  delay(5000);
+
+  // TRANSFERING FLOW TO 4
+  Serial.print("\n TRANSFERING TRAFFIC TO 4");
+  digitalWrite(9,LOW); // G3 IS OFF
+  digitalWrite(8,HIGH);// Y3 IS ON
+  digitalWrite(10,LOW);// R4 IS OFF
+  digitalWrite(11,HIGH);// Y4 IS ON
+
+  delay(3000);
+  // TRAFFIC FLOW 4 IS OPEN
+  Serial.print("\n TRAFFIC THROUGH 4 IS OPEN");
+  digitalWrite(8,LOW); // Y3 IS OFF
+  digitalWrite(7,HIGH); // R3 IS ON 
+  digitalWrite(11,LOW); // Y4 IS OFF
+  digitalWrite(12,HIGH); // G4 IS ON
+  delay(5000);
+
+  // Transfering Flow to 1
+  Serial.print("\n TRANSFERING TRAFFIC TO 1");
+  digitalWrite(12,LOW); // G4 IS OFF
+  digitalWrite(11,HIGH);// Y4 IS ON
+  digitalWrite(13,LOW);// R1 IS OFF
+  digitalWrite(2,HIGH);// Y2 IS ON
+
+  delay(3000);
+  digitalWrite(11,LOW);// Y4 IS OFF
+  digitalWrite(2,LOW);// Y2 IS OFF
+}
